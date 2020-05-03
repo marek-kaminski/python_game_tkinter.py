@@ -1,4 +1,5 @@
 from tkinter import *
+import os
 
 #Creating an instance of Tk initializes this interpreter and creates the root window. I dont have to call tkinter it later
 root = Tk()
@@ -33,6 +34,11 @@ mana = 0
 ekwipunek = ()
 
 
+# this function will leter save the progres of the game by creating a file with the information about the progres the player made 
+def save_csv():
+    f = open("ucho_the_origins_save.txt", "w+")
+    os.mkdir('pizza_pictures')
+    f.close()
 
 # the functions were written before i had learned about code naming rules and code ethics so it isn`t pretty and
 # it is messy. Im working to clean  it
