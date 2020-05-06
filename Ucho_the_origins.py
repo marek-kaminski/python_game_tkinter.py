@@ -1,11 +1,12 @@
 from tkinter import *
 import os
 
+
 #Creating an instance of Tk initializes this interpreter and creates the root window. I dont have to call tkinter it later
 root = Tk()
 # All the images that are in the game
 photo = PhotoImage(file="giphy.gif", )
-Goblin_image = PhotoImage(file="gobba.png")
+goblin_image = PhotoImage(file="gobba.png")
 pikachu_image = PhotoImage(file= "thumb-89303.gif")
 nice_picture = PhotoImage(file= "cyrodiil-pixel-art.png")
 first_room_picture = PhotoImage(file= "ucho_first_room_pixelart.png")
@@ -15,7 +16,7 @@ hurt_goblin_picture = PhotoImage(file="hurt_gobba.png")
 # The main framework (all the windows)
 Stats = Label(root, width=15, height=50, bg="red")
 Stats.pack(side=LEFT)
-NPC_images = Label(root, image=Goblin_image , width=200, height=200, bg="green" )
+NPC_images = Label(root, image=goblin_image , width=200, height=200, bg="green" )
 NPC_images.pack(side=RIGHT, anchor=NW)
 label = Label(root, image=photo, width=900, height=450, bg="black")
 label.pack()
@@ -28,67 +29,66 @@ bottomFrame.pack(side=BOTTOM, expand = "yes")
 #root.configure(width=1200, height=600,)
 root.configure( bg="black")
 
-#stats of the small goblin
-Hp = 10
-mana = 0
-ekwipunek = ()
 
 
-# this function will leter save the progres of the game by creating a file with the information about the progres the player made 
+# this function will save the progress bu creating a a simple txt file and later reading it.
 def save_csv():
     f = open("ucho_the_origins_save.txt", "w+")
+    f.write("The player has made some progress")
     os.mkdir('pizza_pictures')
     f.close()
 
+# save_csv()
+
 # the functions were written before i had learned about code naming rules and code ethics so it isn`t pretty and
 # it is messy. Im working to clean  it
-def First_Orc():
+
+
+
+def first_orc():
     introduction["text"] = " Wytruptujesz z pomieszczenia. Twoje oczy szybko przyzwyczajają\n" \
                            "się do ciemności. Widzisz, że niedaleko siedzi ork. Jak tylko cię\n" \
                            "zauważa podchodzi do ciebie szczeżąc kły. \n" \
                            "-HEJ, mały git -mówi znudzonym głosem- \n" \
                            "-Jak się nazywasz?"
     introduction.pack()
-    def Grimgor_name():
+    def grimgor_name():
         introduction["text"] = "- Gupi git, to ymie jusz je zajete!!- Ork marsczy brwi i nim zdążysz\n" \
                                "zareagować dostajesz cios w twarz. Padasz do tyłu z podbitym okiem\n" \
                                "Jak się zbierasz z podłogi ork traci tobą zainteresowanie i idzie \n" \
                                "w swoją strone... Jesteś sam pośrodku korytarza"
         introduction.pack()
-        def Auch():
+
+        def auch():
             introduction["text"] = " Leżysz, mroczki latają przed oczami, próbujesz złapać\n" \
                                    "te śmieszne kształty ale cały czas uciekają. Pare minut\n" \
                                    "zajmuje ci wrócenie do siebie. "
-            introduction.pack()
-        def Hiding():
-            introduction["text"] = " Odruchowo skulasz się i chowasz za najbliższym kamykiem\n" \
-                                   "ale nic się nie dzieje. Czekasz parę minut i dalej nic."
             introduction.pack()
         NPC_images["image"] = hurt_goblin_picture
         label['image'] = hurt_goblin_picture
         button0['text'] = 'zbieram się z podłogi'
         button0["fg"] = "blue"
-        button0["command"] = Tower_first_look
+        button0["command"] = tower_first_look
         button2['text'] = "leżę i patrzę na gwiazdy"
-        button2["command"] = Auch
+        button2["command"] = auch
         button2["fg"] = "green"
-        button1["fg"] = "green"
-        button1["text"] = "chowam się"
-        button1["command"] = Hiding
+        button1["fg"] = "blue"
+        button1["text"] = "wracam do pokoju"
+        button1["command"] = first_room_looking
     button0["text"] = "yyyy, glonk?"
-    button0["command"] = Choosing_name
+    button0["command"] = choosing_name
     button2['text'] = "skub"
     button0["fg"] = "green"
     button2["fg"] = "green"
-    button2["command"] = Choosing_name
+    button2["command"] = choosing_name
     button1["fg"] = "red"
     button1["text"] = "GRIMGOR ŻELAZNOSKÓRY !!"
-    button1["command"] = Grimgor_name
+    button1["command"] = grimgor_name
 
 
-def changeText():
+def change_text():
     introduction["text"] =  "Widziesz jak światło powoli przebija się przez cieńką warstwę ziemi \n" \
-                            " pod którą leżysz, odgarniasz piach i wygrzebujesz się z kopca. Który\n" \
+                            " pod którą leżysz, odgarniasz piach i wygrzebujesz się z kopca, który\n" \
                             "jest w końcie pokoju. Z jednej strony widzisz wielką dziurę przez którą\n"\
                            "wpada blask słońca. Promienie odbiją się od zniszczonych kafelek \n"\
                            "pokrywających podłogę i ściany. Do pokoju prowadzą jedne zniszczone drzwi."
@@ -96,14 +96,14 @@ def changeText():
     label['image'] = first_room_picture
     label.pack()
     button0['text'] = 'Podchodzę do dziury po drzwiach'
-    button0['command'] = First_Orc
+    button0['command'] = first_orc
     button2['text'] = "Podchodzę do  dziury w ścianie"
     button2["fg"] = "green"
-    button2["command"] = Big_hole
+    button2["command"] = big_hole
     button1["text"] = "Rozglądam się po pomieszczeniu"
-    button1["command"] = First_Room_looking
+    button1["command"] = first_room_looking
 
-def Machinery_1():
+def machinery_1():
         introduction["text"] = " Błądzisz po potężnym budynku parę ładnych godzin, mijasz po drodze\n" \
                                "gobliny i orki, wszystkie obładowane częściami i sprzętem. W setkach pokoi\n" \
                                "roi się od inżynierów, wielkie kuźnie i warsztaty dymią i buchają płomieniami.\n" \
@@ -124,14 +124,13 @@ def Machinery_1():
             def join_engineers():
                 introduction["text"] = " Na pewno chcesz spędzić następnych parę miesięcy pomagając inżynierom?"
                 introduction.pack()
-                def end_as_engineer():
-                    button0['text'] = 'Tak'
-                    button0["command"] = end_as_engineer
-                    button2['text'] = "Nie"
-                    button2["command"] = machinery_engineer
-                    button1["fg"] = "blue"
-                    button1["text"] = "Też nie ale na niebiesko"
-                    button1["command"] = machinery_engineer
+                button0['text'] = 'Tak'
+                button0["command"] = save_csv
+                button2['text'] = "Nie"
+                button2["command"] = machinery_engineer
+                button1["fg"] = "blue"
+                button1["text"] = "Też nie ale na niebiesko"
+                button1["command"] = machinery_engineer
             button2['text'] = "Chcę dołączyć?"
             button2["command"] = join_engineers
             button1["text"] = "Wróć na środek placu"
@@ -150,7 +149,7 @@ def Machinery_1():
             button2["command"] = machinery_engineer
             button1["fg"] = "blue"
             button1["text"] = "wróć do wieży"
-            button1["command"] = Tower_first_look
+            button1["command"] = tower_first_look
         button0['text'] = 'Rozglądam się po wielkim placu'
         button0["command"] = machinery_look
 
@@ -158,10 +157,10 @@ def Machinery_1():
         button2["command"] = machinery_engineer
         button1["fg"] = "blue"
         button1["text"] = "wróć do wieży"
-        button1["command"] =Tower_first_look
+        button1["command"] =tower_first_look
 
 
-def Choosing_name():
+def choosing_name():
         introduction["text"] = "-Oki doki- to spoko ymie mmały git- I nie patrząc więcej na \n" \
                                "ciebie poszedł w swoją stronę. Jesteś w wierzy. Zbudowana jest\n" \
                                " z kawałków cegieł, kamieni, drewna\n" \
@@ -172,13 +171,13 @@ def Choosing_name():
         introduction.pack()
         button0['text'] = 'Idę do góry'
         button0["fg"] = "blue"
-        button0["command"] = Machinery_1
+        button0["command"] = machinery_1
         button2['text'] = "Idę na dół"
-        button2["command"] = Tower_first_look
+        button2["command"] = tower_first_look
         button2["fg"] = "blue"
         button1["fg"] = "blue"
         button1["text"] = "Wychodzę z wierzy"
-        button1["command"] = Tower_first_look
+        button1["command"] = tower_first_look
 
 
 
@@ -186,45 +185,45 @@ def Choosing_name():
 
 
 
-def First_Room_looking():
+def first_room_looking():
     introduction["text"] = "Rozglądasz się. Znajdujesz kawałek mchu. W końcie jest trochę wody \n" \
                             "w kałuży,Jest pyszna i smakuje piaskiem. Już nie ma kałuży. Z kopca\n" \
                             " z którego się wykopałeś wystaje parę grzybów. Mają smaczny fioletowy kolor. \n" \
                             "Zjadasz jednego z nich i w sumie jest całkiem niezły. Zjadasz resztę z nich.\n" \
                            " Nic więcej ciekawego do jedzenia nie ma. "
     introduction.pack()
-    label["image"] = Goblin_image
+    label["image"] = first_room_picture
     label.pack()
     button0['text'] = 'Podchodzę do   drzwi'
     button0["fg"] = "blue"
-    button0["command"] = First_Orc
+    button0["command"] = first_orc
     button2['text'] = "Podchodzę do  dziury w ścianie"
     button2["fg"] = "blue"
-    button2["command"] = Big_hole
+    button2["command"] = big_hole
     button1["fg"] = "green"
     button1["text"] = "Rozglądam się po pomieszczeniu"
-    button1["command"] = First_Room_looking
+    button1["command"] = first_room_looking
 
 
-def First_Room():
+def first_room():
     introduction["text"] = " Jesteś w małym pomieszczeniu, w końcie jest masa piachu z\n " \
                             "której wylazłeś. Na ścianach jest trochę mchu i grzybów.\n " \
                             "Kafelki wyglądają na zniszczone. W konatach są pajęczyny i\n " \
                            "kawałki drewna. "
     introduction.pack()
-    label["image"] = Goblin_image
+    label["image"] = first_room_picture
     label.pack()
     button0['text'] = 'Podchodzę do   drzwi'
     button0["fg"] = "blue"
-    button0["command"] = First_Orc
+    button0["command"] = first_orc
     button2['text'] = "Podchodzę do  dziury w ścianie"
     button2["fg"] = "blue"
-    button2["command"] = Big_hole
+    button2["command"] = big_hole
     button1["fg"] = "green"
     button1["text"] = "Rozglądam się po pomieszczeniu"
-    button1["command"] = First_Room_looking
+    button1["command"] = first_room_looking
 
-def Big_hole():
+def big_hole():
     introduction["text"] = "Z wybitej dziury rozlega się piękny widok, spoglądasz ze zrójnowanej\n" \
                            "wieży, potężna konstrukcja wzmocniona jest prowizorycznymi rusztowaniami\n" \
                            "poniżej widać miasto zbudowane z wszelkiej maści gruzów i kamieni,\n" \
@@ -235,16 +234,16 @@ def Big_hole():
     label["image"] = nice_picture
     button0['text'] = 'spoglądam w dół'
     button0["fg"] = "green"
-    def Sightseeing_from_the_towet():
+    def sightseeing_from_the_towet():
         introduction["text"] = " Widzisz piękny widok. Wielka wieża, z której wyglądasz góruje na całym\n" \
                                " krajobrazem. W dole widać miasto z mrowiem innych postaci. Chmury leniwie\n" \
                                "pełzną po niebie. W oddali las ciągnie się aż po horyzont."
         introduction.pack()
-    button0["command"] = Sightseeing_from_the_towet
+    button0["command"] = sightseeing_from_the_towet
     button2['text'] = "patrzę prosto na słońcę!!!"
     button2["fg"] = "red"
 
-    def YYY():
+    def yyy():
         introduction['text'] = " YYYYHHUUEE!?!!?"
         introduction.pack()
         button0['text'] = 'FFFFFLLLLLLL'
@@ -256,16 +255,16 @@ def Big_hole():
             introduction["text"] = " Blask zalewa ci oczy. Mrugasz ale niewiele to pomaga. Musisz poczekać parę minut\n" \
                                    "aż wróci ci wzrok. Powoli znowu widzisz swoje otoczenie."
             introduction.pack()
-            button0["command"] = Big_hole
-            button2["command"] = Big_hole
-            button1["command"] = Big_hole
+            button0["command"] = big_hole
+            button2["command"] = big_hole
+            button1["command"] = big_hole
         button0["command"] = blinded_by_the_sun
         button2["command"] = blinded_by_the_sun
         button1["command"] = blinded_by_the_sun
-    button2["command"] = YYY
+    button2["command"] = yyy
     button1["text"] = "wracam z powrotem do pokoju"
     button1["fg"] = "blue"
-    button1["command"] = First_Room
+    button1["command"] = first_room
 
 def going_downstairs():
     introduction["text"] = "Jesteś w rozległych podziemiach. Wszędzie widać świecące grzyby i pracujące gobliny. \n" \
@@ -284,10 +283,10 @@ def going_downstairs():
         button0["command"] = first_shaman_text
         button0["fg"] = "green"
         button2['text'] = "Wracam do wieży"
-        button2["command"] = Tower_first_look
+        button2["command"] = tower_first_look
         button2["fg"] = "blue"
         button1["text"] = "Chcę dołączyć"
-        button1["command"] = first_shaman
+        button1["command"] = save_csv
         button1["fg"] = "blue"
     button0["command"] = first_shaman
     button0["fg"] = "green"
@@ -299,77 +298,63 @@ def going_downstairs():
     button2["command"] = first_shaman_look
     button2["fg"] = "green"
     button1["text"] = "wróć na górę"
-    button1["command"] = Tower_first_look
+    button1["command"] = tower_first_look
     button1["fg"] = "blue"
 
 
 
 
-def Tower_first_look():
+def tower_first_look():
     introduction["text"] = "Jesteś w wierzy. Zbudowana jest z kawałków cegieł, kamieni, drewna\n" \
                            "Budowla wydaje się olbrzymia, składa się z losowo rozmieszczonych\n" \
                            "pomieszczeń i korytarzy. Wszędzie słychać kroki i odgłosy różnych\n" \
                            "zielonoskórych. Z góry słychać chałas maszyn. Z dołu czujesz \n" \
-                           "przyjemny zapach grzybów. Możesz też poszukać wyjścia "
+                           "przyjemny zapach grzybów. Możesz też wrócić do pokoju"
     introduction.pack()
     button0['text'] = 'Idę do góry'
-    button0["command"] = Machinery_1
+    button0["command"] = machinery_1
     button0["fg"] = "blue"
     button2['text'] = "Idę na dół"
     button2["command"] = going_downstairs
     button2["fg"] = "blue"
-    button1["text"] = "Wychodzę z wieży"
-    button1["command"] = Tower_first_look
+    button1["text"] = "wracam do pokoju"
+    button1["command"] = first_room_looking
     button1["fg"] = "blue"
 
 
+#stats of the small goblin
+Hp =10
+magic =0
+inventory = ()
 
-
-
-
-
-
-
-
-
-
-
-
-
-# window for the stats of the player
-'''''''''
+# window for the stats
+# here in the "text" parameter we need to use "+" instead of "," because otherwise tkinter will add curly brackets to
+# the displayed text and convert into tuple
 stat =  Label(Stats,font=("Courier", 13), width=10, height=30, bg="black", fg="white",
-              text= " HP = 10\n" 
-                   "mana = 0\n"
-                   "\n"
-                   "Ekwipunek:\n"
-                   " nic ")
-stat.pack()
-'''''''''
-
-
-
-stat =  Label(Stats,font=("Courier", 13), width=8, height=1, bg="black", fg="white",
-              text= " HP  " )
-stat.pack(side=LEFT, anchor=NW)
-stat =  Label(Stats,font=("Courier", 13), width=8, height=2, bg="black", fg="white",
-              text= 10 )
-stat.pack()
-
-stat =  Label(Stats,font=("Courier", 13), width=8, height=1, bg="black", fg="white",
-              text= " mana  " )
-stat.pack(side=LEFT, anchor=NW)
-stat =  Label(Stats,font=("Courier", 13), width=8, height=2, bg="black", fg="white",
-              text= 0)
+              text= " HP =" + str(Hp) + "\n magic = "+ str(mana) +"\n" "\n" "Inventory:\n" " nic " )
 stat.pack()
 
 
-stat =  Label(Stats,font=("Courier", 13), width=10, height=2, bg="black", fg="white",
-              text= " Ekwipunek:\n" )
-stat.pack(side=LEFT, anchor=NW)
 
-
-
+#
+# stat =  Label(Stats,font=("Courier", 13), width=8, height=1, bg="black", fg="white",
+#               text= " HP  " )
+# stat.pack(side=LEFT, anchor=NW)
+# stat =  Label(Stats,font=("Courier", 13), width=8, height=2, bg="black", fg="white",
+#               text= 10 )
+# stat.pack()
+#
+# stat =  Label(Stats,font=("Courier", 13), width=8, height=1, bg="black", fg="white",
+#               text= " mana  " )
+# stat.pack(side=LEFT, anchor=NW)
+# stat =  Label(Stats,font=("Courier", 13), width=8, height=2, bg="black", fg="white",
+#               text= 0)
+# stat.pack()
+#
+#
+# stat =  Label(Stats,font=("Courier", 13), width=10, height=2, bg="black", fg="white",
+#               text= " Ekwipunek:\n" )
+# stat.pack(side=LEFT, anchor=NW)
 
 
 
@@ -391,13 +376,13 @@ button2.pack(side=BOTTOM)
 
 button0 = Button(bottomFrame, width=35, height=1,
                  text="Zobacz co marek przygotował", fg="green",
-                 command= changeText, )
+                 command= change_text, )
 button0.pack(side=BOTTOM)
 
 
 button1 = Button(bottomFrame, width=35, height=1,
                  text="Jasne że zagram", fg="blue",
-                 command= changeText, )
+                 command= change_text, )
 button1.pack(side=BOTTOM, )
 
 
@@ -435,13 +420,5 @@ def nameOfFunction():
     button1["fg"] = "blue"               
     
 '''
-
-
-
-
-
-
-
-
 
 root.mainloop()
