@@ -31,6 +31,23 @@ root.configure( bg="black")
 
 
 
+#stats of the small goblin
+Hp =10
+magic =0
+inventory = ()
+
+
+
+# window for the stats
+# here in the "text" parameter we need to use "+" instead of "," because otherwise tkinter will add curly brackets to
+# the displayed text and convert into tuple
+stat =  Label(Stats,font=("Courier", 13), width=10, height=30, bg="black", fg="white",
+              text= " HP =" + str(Hp) + "\n magic = "+ str(magic) +"\n" "\n" "Inventory:\n" " nic " )
+stat.pack()
+
+
+
+
 # this function will save the progress bu creating a a simple txt file and later reading it.
 def save_csv():
     f = open("ucho_the_origins_save.txt", "w+")
@@ -46,35 +63,44 @@ def save_csv():
 
 
 def first_orc():
-    introduction["text"] = " Wytruptujesz z pomieszczenia. Twoje oczy szybko przyzwyczajają\n" \
-                           "się do ciemności. Widzisz, że niedaleko siedzi ork. Jak tylko cię\n" \
-                           "zauważa podchodzi do ciebie szczeżąc kły. \n" \
-                           "-HEJ, mały git -mówi znudzonym głosem- \n" \
-                           "-Jak się nazywasz?"
+    introduction["text"] =  "You leave the room. Your eyes are quickly getting used to the dark. \n "\
+                            "You see that an orc sits nearby. As soon as he notices you, \n "\
+                            "he approaches you, barking his fangs. \n "\
+                            "-HEY, little git - he says in a bored voice - \n "\
+                            "-What is your name?"
     introduction.pack()
     def grimgor_name():
-        introduction["text"] = "- Gupi git, to ymie jusz je zajete!!- Ork marsczy brwi i nim zdążysz\n" \
-                               "zareagować dostajesz cios w twarz. Padasz do tyłu z podbitym okiem\n" \
-                               "Jak się zbierasz z podłogi ork traci tobą zainteresowanie i idzie \n" \
-                               "w swoją strone... Jesteś sam pośrodku korytarza"
+        introduction["text"] =  "- Stupid git, this name is already taken !! - \n "\
+                                "The orc frowns and you get a blow to the face before you can react. \n "\
+                                " You fall backwards with a black eye  When you get up from the floor,  \n "\
+                                "the orc loses interest and goes your way ... \n "\
+                                "You are alone in the middle of the \n" \
+                                "corridor"
+
         introduction.pack()
 
         def auch():
-            introduction["text"] = " Leżysz, mroczki latają przed oczami, próbujesz złapać\n" \
-                                   "te śmieszne kształty ale cały czas uciekają. Pare minut\n" \
-                                   "zajmuje ci wrócenie do siebie. "
+            introduction["text"] = "You lie, the shadows fly in front of your eyes, \n "\
+                                    "you try to catch those funny shapes but they run away all the time.\n " \
+                                   " it takes you A few minutes to go back to yourself. "
             introduction.pack()
         NPC_images["image"] = hurt_goblin_picture
         label['image'] = hurt_goblin_picture
-        button0['text'] = 'zbieram się z podłogi'
+        button0['text'] = 'get up from the floor'
         button0["fg"] = "blue"
         button0["command"] = tower_first_look
-        button2['text'] = "leżę i patrzę na gwiazdy"
+        button2['text'] = "look at the stars"
         button2["command"] = auch
         button2["fg"] = "green"
         button1["fg"] = "blue"
-        button1["text"] = "wracam do pokoju"
+        button1["text"] = "go back to the room"
         button1["command"] = first_room_looking
+        # need be careful by declaring global variable as it will affect all places where Hp is referenced
+        global Hp
+        Hp -= 1
+        # next line will update the label stats as without it the Hp stays at 10
+        stat["text"] = " HP =" + str(Hp) + "\n magic = "+ str(magic) +"\n" "\n" "Inventory:\n" " nic "
+
     button0["text"] = "yyyy, glonk?"
     button0["command"] = choosing_name
     button2['text'] = "skub"
@@ -82,102 +108,102 @@ def first_orc():
     button2["fg"] = "green"
     button2["command"] = choosing_name
     button1["fg"] = "red"
-    button1["text"] = "GRIMGOR ŻELAZNOSKÓRY !!"
+    button1["text"] = "GRIMGOR IRONHIDE !!"
     button1["command"] = grimgor_name
 
 
 def change_text():
-    introduction["text"] =  "Widziesz jak światło powoli przebija się przez cieńką warstwę ziemi \n" \
-                            " pod którą leżysz, odgarniasz piach i wygrzebujesz się z kopca, który\n" \
-                            "jest w końcie pokoju. Z jednej strony widzisz wielką dziurę przez którą\n"\
-                           "wpada blask słońca. Promienie odbiją się od zniszczonych kafelek \n"\
-                           "pokrywających podłogę i ściany. Do pokoju prowadzą jedne zniszczone drzwi."
+    introduction["text"] =  "You see how the light slowly breaks through the thin layer of earth \n" \
+                            " under which you lie, you shovel the sand aside. \n " \
+                            "On the one side, you see a huge hole through which \n " \
+                            "the sun shines. You see the damaged tiles \n" \
+                            "covering the floor and walls. One broken door leads to the room."
     introduction.pack()
     label['image'] = first_room_picture
     label.pack()
-    button0['text'] = 'Podchodzę do dziury po drzwiach'
+    button0['text'] = 'go to the hole in the door'
     button0['command'] = first_orc
-    button2['text'] = "Podchodzę do  dziury w ścianie"
+    button2['text'] = "go to the hole in the wall"
     button2["fg"] = "green"
     button2["command"] = big_hole
-    button1["text"] = "Rozglądam się po pomieszczeniu"
+    button1["text"] = "look around the room"
     button1["command"] = first_room_looking
 
 def machinery_1():
-        introduction["text"] = " Błądzisz po potężnym budynku parę ładnych godzin, mijasz po drodze\n" \
-                               "gobliny i orki, wszystkie obładowane częściami i sprzętem. W setkach pokoi\n" \
-                               "roi się od inżynierów, wielkie kuźnie i warsztaty dymią i buchają płomieniami.\n" \
-                               "Nareszcie udaje się ci dojść na potężny plac. Blask słońca zalewa ci oczy. Jesteś na\n" \
-                               "samym szczycie!! Setki zielonoskórych pracują nad potężnym urządzeniem. "
+        introduction["text"] = " You wander the huge building for a few nice hours, \n " \
+                               "you pass by goblins and orcs, all laden with parts and equipment.\n " \
+                               " Hundreds of rooms are full of engineers, huge smithies and workshops\n " \
+                               " smoke and blaze. Finally you manage to reach the mighty square.\n " \
+                               " Sunlight floods your eyes. You are at the very top !! \n " \
+                               "Hundreds of greenskins are working on a powerful device. "
+
         introduction.pack()
         def machinery_engineer():
-            introduction["text"] = " Podchodzisz do jednego z inżynierów zajmujących się kreśleniem planów"
+            introduction["text"] = " You approach one of the engineers involved in drawing up plans"
             introduction.pack()
             def machinery_description():
-                introduction["text"] = " -To byndzie najwinkszy kamykodalekorzut jakiego żeśmy kiedykolwiek zrobily\n" \
-                                       "Mamy wielki plan przepowiedziany przez szamanóf!!\n" \
-                                       "Fszzyscy widzom, że gobbosy som ze KSIENŻYCA. My tam wrócimy.\n" \
-                                       "Jak chcysz to możesz pomagać. Chcesz? "
+                introduction["text"] = " -This will be the largest rockfarthower we have ever made \n" \
+                                       "-We have a great plan foretold by the shaman! everyone knows \n " \
+                                       "that the gobbos are from the MOON. but we will go back there.\n" \
+                                       " If you want, you can help. Want? "
                 introduction.pack()
-            button0['text'] = '"Nad czym pracujecie?"'
+            button0['text'] = '"What are you working on?"'
             button0["command"] = machinery_description
             def join_engineers():
-                introduction["text"] = " Na pewno chcesz spędzić następnych parę miesięcy pomagając inżynierom?"
+                introduction["text"] = " Are you sure you want to spend the next few months helping the engineers?"
                 introduction.pack()
-                button0['text'] = 'Tak'
+                button0['text'] = 'yes'
                 button0["command"] = save_csv
-                button2['text'] = "Nie"
+                button2['text'] = "no"
                 button2["command"] = machinery_engineer
                 button1["fg"] = "blue"
-                button1["text"] = "Też nie ale na niebiesko"
+                button1["text"] = "also no but blue"
                 button1["command"] = machinery_engineer
-            button2['text'] = "Chcę dołączyć?"
+            button2['text'] = "I want to join"
             button2["command"] = join_engineers
-            button1["text"] = "Wróć na środek placu"
+            button1["text"] = "Return to the middle of the square"
             button1["command"] = machinery_look
         def machinery_look():
-            introduction["text"] = " Wielka machina wzbija się w niebo. Mieszanina lin i łańcuchów spina konstrukcję\n" \
-                                   " Ogrom goblinów chodzi i wdrrapuje się na bele. Z wyglądu widać, że machina   \n" \
-                                   " została zbudowana by miotać wielkimi żelaznymi klatkami. Jest w ciągłym procesie\n" \
-                                   " ulepszania i wymiany części by była coraz potężniejsza. Grono inżynierów nadzoruje\n" \
-                                   " budowę i rysuje plany wciąż nowych części.   \n"
+            introduction["text"] = "The great machine soars into the sky. A set of ropes and chains\n" \
+                                   " fastens the construction.Swarm of goblins walks and climbs\n" \
+                                   " onto the planks. A group of engineers oversees\n" \
+                                   " and draws plans for new parts. "
             introduction.pack()
-            button0['text'] = 'Rozglądam się po wielkim placu'
+            button0['text'] = ' look around the big place'
             button0["command"] = machinery_look
 
-            button2['text'] = "Podchodzę do inżyniera"
+            button2['text'] = "approach the engineer"
             button2["command"] = machinery_engineer
             button1["fg"] = "blue"
-            button1["text"] = "wróć do wieży"
+            button1["text"] = "go back to the tower"
             button1["command"] = tower_first_look
-        button0['text'] = 'Rozglądam się po wielkim placu'
+        button0['text'] = 'look around the big place'
         button0["command"] = machinery_look
 
-        button2['text'] = "Podchodzę do inżyniera"
+        button2['text'] = "approach the engineer"
         button2["command"] = machinery_engineer
         button1["fg"] = "blue"
-        button1["text"] = "wróć do wieży"
+        button1["text"] = "go back to the tower"
         button1["command"] =tower_first_look
 
 
 def choosing_name():
-        introduction["text"] = "-Oki doki- to spoko ymie mmały git- I nie patrząc więcej na \n" \
-                               "ciebie poszedł w swoją stronę. Jesteś w wierzy. Zbudowana jest\n" \
-                               " z kawałków cegieł, kamieni, drewna\n" \
-                               "Budowla wydaje się olbrzymia, składa się z losowo rozmieszczonych\n" \
-                              "pomieszczeń i korytarzy. Wszędzie słychać kroki i odgłosy różnych\n" \
-                               "zielonoskórych. Z góry słychać chałas maszyn. Z dołu czujesz \n" \
-                                 "przyjemny zapach grzybów. Możesz też poszukać wyjścia "
+        introduction["text"] = "-Okay. It's a cool little git name- Without looking at you\n" \
+                               " he went his way. The tower is made of pieces\n" \
+                               " of bricks, stones, wood. The building seems huge, \n" \
+                               " consists of randomly arranged rooms and corridors. \n" \
+                               "  Above you can hear the noise of machines.\n" \
+                               "  From below you can smell the pleasant smell of mushrooms. "
         introduction.pack()
-        button0['text'] = 'Idę do góry'
+        button0['text'] = 'go  upstairs'
         button0["fg"] = "blue"
         button0["command"] = machinery_1
-        button2['text'] = "Idę na dół"
+        button2['text'] = "go downstairs"
         button2["command"] = tower_first_look
         button2["fg"] = "blue"
         button1["fg"] = "blue"
-        button1["text"] = "Wychodzę z wierzy"
-        button1["command"] = tower_first_look
+        button1["text"] = "go back to the room"
+        button1["command"] = first_room_looking
 
 
 
@@ -186,22 +212,24 @@ def choosing_name():
 
 
 def first_room_looking():
-    introduction["text"] = "Rozglądasz się. Znajdujesz kawałek mchu. W końcie jest trochę wody \n" \
-                            "w kałuży,Jest pyszna i smakuje piaskiem. Już nie ma kałuży. Z kopca\n" \
-                            " z którego się wykopałeś wystaje parę grzybów. Mają smaczny fioletowy kolor. \n" \
-                            "Zjadasz jednego z nich i w sumie jest całkiem niezły. Zjadasz resztę z nich.\n" \
-                           " Nic więcej ciekawego do jedzenia nie ma. "
+    introduction["text"] = " You are looking around. You find a piece of moss. \n" \
+                           "There is some water in the puddle at the end. It is \n" \
+                           "delicious and tastes of sand. There is no puddle anymore.\n" \
+                           " A few mushrooms stick out of the mound from which you \n" \
+                           "dug up. They have a tasty purple color. You eat one of \n" \
+                           "them and it is quite nice. You eat the rest of them.\n" \
+                           " Nothing more  to eat. "
     introduction.pack()
     label["image"] = first_room_picture
     label.pack()
-    button0['text'] = 'Podchodzę do   drzwi'
+    button0['text'] = 'walk to the door'
     button0["fg"] = "blue"
     button0["command"] = first_orc
-    button2['text'] = "Podchodzę do  dziury w ścianie"
+    button2['text'] = "go to the hole in the wall"
     button2["fg"] = "blue"
     button2["command"] = big_hole
     button1["fg"] = "green"
-    button1["text"] = "Rozglądam się po pomieszczeniu"
+    button1["text"] = "look around"
     button1["command"] = first_room_looking
 
 
@@ -247,7 +275,7 @@ def big_hole():
         introduction['text'] = " YYYYHHUUEE!?!!?"
         introduction.pack()
         button0['text'] = 'FFFFFLLLLLLL'
-        button2['text'] = "tak"
+        button2['text'] = "yes"
         button1["text"] = "42??"
         label['image'] = pikachu_image
         label.pack()
@@ -322,17 +350,7 @@ def tower_first_look():
     button1["fg"] = "blue"
 
 
-#stats of the small goblin
-Hp =10
-magic =0
-inventory = ()
 
-# window for the stats
-# here in the "text" parameter we need to use "+" instead of "," because otherwise tkinter will add curly brackets to
-# the displayed text and convert into tuple
-stat =  Label(Stats,font=("Courier", 13), width=10, height=30, bg="black", fg="white",
-              text= " HP =" + str(Hp) + "\n magic = "+ str(mana) +"\n" "\n" "Inventory:\n" " nic " )
-stat.pack()
 
 
 
@@ -355,6 +373,9 @@ stat.pack()
 # stat =  Label(Stats,font=("Courier", 13), width=10, height=2, bg="black", fg="white",
 #               text= " Ekwipunek:\n" )
 # stat.pack(side=LEFT, anchor=NW)
+
+
+
 
 
 
@@ -384,12 +405,6 @@ button1 = Button(bottomFrame, width=35, height=1,
                  text="Jasne że zagram", fg="blue",
                  command= change_text, )
 button1.pack(side=BOTTOM, )
-
-
-
-
-
-
 
 
 
