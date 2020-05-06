@@ -94,7 +94,7 @@ def first_orc():
         button2["fg"] = "green"
         button1["fg"] = "blue"
         button1["text"] = "go back to the room"
-        button1["command"] = first_room_looking
+        button1["command"] = first_room
         # need be careful by declaring global variable as it will affect all places where Hp is referenced
         global Hp
         Hp -= 1
@@ -203,7 +203,7 @@ def choosing_name():
         button2["fg"] = "blue"
         button1["fg"] = "blue"
         button1["text"] = "go back to the room"
-        button1["command"] = first_room_looking
+        button1["command"] = first_room
 
 
 
@@ -234,41 +234,45 @@ def first_room_looking():
 
 
 def first_room():
-    introduction["text"] = " Jesteś w małym pomieszczeniu, w końcie jest masa piachu z\n " \
-                            "której wylazłeś. Na ścianach jest trochę mchu i grzybów.\n " \
-                            "Kafelki wyglądają na zniszczone. W konatach są pajęczyny i\n " \
-                           "kawałki drewna. "
+    introduction["text"] = "You are in a small room, in the corner there is a \n" \
+                           "pile of sand from which you got out. There's some\n" \
+                           " moss and mushrooms on the walls. The tiles look\n" \
+                           " damaged. There are cobwebs and pieces of wood in the corner. "
+
     introduction.pack()
     label["image"] = first_room_picture
     label.pack()
-    button0['text'] = 'Podchodzę do   drzwi'
+    button0['text'] = 'walk to the door'
     button0["fg"] = "blue"
     button0["command"] = first_orc
-    button2['text'] = "Podchodzę do  dziury w ścianie"
+    button2['text'] = "go to the hole in the wall"
     button2["fg"] = "blue"
     button2["command"] = big_hole
     button1["fg"] = "green"
-    button1["text"] = "Rozglądam się po pomieszczeniu"
+    button1["text"] = "look around"
     button1["command"] = first_room_looking
 
 def big_hole():
-    introduction["text"] = "Z wybitej dziury rozlega się piękny widok, spoglądasz ze zrójnowanej\n" \
-                           "wieży, potężna konstrukcja wzmocniona jest prowizorycznymi rusztowaniami\n" \
-                           "poniżej widać miasto zbudowane z wszelkiej maści gruzów i kamieni,\n" \
-                           "w mieście panuje ruch i gwar ale trudno dostrzec pojedyńcze sylwetki.\n" \
-                           "Dalej widać pola uprawne, las oraz góry, lecz nawet one nie są tak wysokie\n" \
-                           "jak wieża z której spoglądasz. "
+    introduction["text"] = "There is a beautiful view from the punched hole, \n" \
+                           "you look from the tower, the  structure is reinforced\n" \
+                           " with makeshift scaffoldings, below you can see a city\n" \
+                           " built of all kinds of debris, it is full of movement \n" \
+                           " but it is difficult to see individual silhouettes.\n" \
+                           " Next you can see the farmlands, forest and mountains, \n" \
+                           "but even they are not as high as the tower from which you look. "
     introduction.pack()
     label["image"] = nice_picture
-    button0['text'] = 'spoglądam w dół'
+    button0['text'] = 'look down'
     button0["fg"] = "green"
     def sightseeing_from_the_towet():
-        introduction["text"] = " Widzisz piękny widok. Wielka wieża, z której wyglądasz góruje na całym\n" \
-                               " krajobrazem. W dole widać miasto z mrowiem innych postaci. Chmury leniwie\n" \
-                               "pełzną po niebie. W oddali las ciągnie się aż po horyzont."
+        introduction["text"] = " You see a beautiful view. The big tower you look from\n" \
+                               " towers over the whole landscape. Below you can see a \n" \
+                               "city with a multitude of other characters. Clouds lazily\n" \
+                               " crawl across the sky. In the distance, the forest \n" \
+                               "and mountains stretches to the horizon. "
         introduction.pack()
     button0["command"] = sightseeing_from_the_towet
-    button2['text'] = "patrzę prosto na słońcę!!!"
+    button2['text'] = "I look straight at the sun!!!"
     button2["fg"] = "red"
 
     def yyy():
@@ -280,8 +284,9 @@ def big_hole():
         label['image'] = pikachu_image
         label.pack()
         def blinded_by_the_sun():
-            introduction["text"] = " Blask zalewa ci oczy. Mrugasz ale niewiele to pomaga. Musisz poczekać parę minut\n" \
-                                   "aż wróci ci wzrok. Powoli znowu widzisz swoje otoczenie."
+            introduction["text"] = " Glare floods your eyes. You blink but it doesn't help much. \n" \
+                                   "You have to wait a few minutes for your eyesight to come back. \n" \
+                                   "You can see your surroundings slowly again."
             introduction.pack()
             button0["command"] = big_hole
             button2["command"] = big_hole
@@ -290,42 +295,45 @@ def big_hole():
         button2["command"] = blinded_by_the_sun
         button1["command"] = blinded_by_the_sun
     button2["command"] = yyy
-    button1["text"] = "wracam z powrotem do pokoju"
+    button1["text"] = "go back to the room"
     button1["fg"] = "blue"
     button1["command"] = first_room
 
 def going_downstairs():
-    introduction["text"] = "Jesteś w rozległych podziemiach. Wszędzie widać świecące grzyby i pracujące gobliny. \n" \
-                           "Słychać z dołu brzmienie bębnów i pyszny zapach grzybów. Wchodzisz do jednego z pokoi." \
-                           "Widać sporo grzybów, jakieś zwierzaki i szamanów z śmisznymi czapkami. "
-    button0['text'] = 'podejdź do szamana'
+    introduction["text"] = "You are in a vast underground. Everywhere you can see glowing \n" \
+                           "mushrooms and working goblins. The sound of drums is heard\n" \
+                           " from below. You enter one of the rooms. You can see a lot\n" \
+                           " of mushrooms, some animals and shamans with funny hats. "
+    button0['text'] = 'approach the shaman'
     def first_shaman():
-        introduction["text"] = "- Hej mały gobba! :D Co tu porabiasz? "
+        introduction["text"] = "- Hey little gobba! : D What are you doing here?"
 
         def first_shaman_text():
-            introduction["text"] = "Ogólnie przygotowójemy wszystko co jest potrzebne. Hodujemy grzyby, odprawiamy \n" \
-                                   "rytułały gdzie pobieramy wizje od BOGÓW czy robimy wszystko zgodnie z planem i \n" \
-                                   "doznajemy oświecenia. Najbardziej oddani zyskują magiczne moce od BOGÓW!!\n" \
-                                   "Ogólnie jest spoko. Ogarniamy tą bude. "
-        button0['text'] = 'Czym sie zajmujecie?'
+            introduction["text"] = "In general, we prepare everything that is needed. \n" \
+                                   "We grow mushrooms, perform rituals where we get \n" \
+                                   "visions from GODs or do everything as planned and \n" \
+                                   "experience enlightenment. The most devoted gain magical\n" \
+                                   " powers from GODS !! Overall it's cool here downstairs.   "
+        button0['text'] = 'What are you doing?'
         button0["command"] = first_shaman_text
         button0["fg"] = "green"
-        button2['text'] = "Wracam do wieży"
+        button2['text'] = "go back to the tower"
         button2["command"] = tower_first_look
         button2["fg"] = "blue"
-        button1["text"] = "Chcę dołączyć"
+        button1["text"] = "I want to join"
         button1["command"] = save_csv
         button1["fg"] = "blue"
     button0["command"] = first_shaman
     button0["fg"] = "green"
     def first_shaman_look():
-        introduction["text"] = "Całe pomieszczenie zalane jest blaskiem grzybów. Wszędzie biegają małe stworki \n" \
-                               "nazywające się squigi. Widać parę zielonoskórych odprawiających rytułały na \n" \
-                               "grzybach i dbających o utrzymanie wszystkiego. Na ścianach lśnią magiczne symbole."
-    button2['text'] = "Rozejrzyj się"
+        introduction["text"] = "The whole room is flooded with the glow of mushrooms. \n" \
+                               "Little creatures called squigs run everywhere. You can \n" \
+                               "see a couple of greenskins performing rituals on mushroom  \n" \
+                               "and taking care of everything. Magic symbols glisten on the walls. "
+    button2['text'] = "look around"
     button2["command"] = first_shaman_look
     button2["fg"] = "green"
-    button1["text"] = "wróć na górę"
+    button1["text"] = "come back upstairs"
     button1["command"] = tower_first_look
     button1["fg"] = "blue"
 
@@ -333,76 +341,47 @@ def going_downstairs():
 
 
 def tower_first_look():
-    introduction["text"] = "Jesteś w wierzy. Zbudowana jest z kawałków cegieł, kamieni, drewna\n" \
-                           "Budowla wydaje się olbrzymia, składa się z losowo rozmieszczonych\n" \
-                           "pomieszczeń i korytarzy. Wszędzie słychać kroki i odgłosy różnych\n" \
-                           "zielonoskórych. Z góry słychać chałas maszyn. Z dołu czujesz \n" \
-                           "przyjemny zapach grzybów. Możesz też wrócić do pokoju"
+    introduction["text"] = "You are in the tower. It is made of pieces of bricks, stones and wood.\n" \
+                           " The building seems huge, consists of randomly arranged rooms\n" \
+                           " and corridors. Everywhere footsteps and sounds of various\n" \
+                           " greenskins are heard. The noise of machines is heard \n" \
+                           "from above. You feel the pleasant smell of mushrooms\n" \
+                           " from below. You can also go back to the room"
     introduction.pack()
-    button0['text'] = 'Idę do góry'
+    button0['text'] = 'go upstairs'
     button0["command"] = machinery_1
     button0["fg"] = "blue"
-    button2['text'] = "Idę na dół"
+    button2['text'] = "go downstairs"
     button2["command"] = going_downstairs
     button2["fg"] = "blue"
-    button1["text"] = "wracam do pokoju"
-    button1["command"] = first_room_looking
+    button1["text"] = "go back to the room"
+    button1["command"] = first_room
     button1["fg"] = "blue"
-
-
-
-
-
-
-#
-# stat =  Label(Stats,font=("Courier", 13), width=8, height=1, bg="black", fg="white",
-#               text= " HP  " )
-# stat.pack(side=LEFT, anchor=NW)
-# stat =  Label(Stats,font=("Courier", 13), width=8, height=2, bg="black", fg="white",
-#               text= 10 )
-# stat.pack()
-#
-# stat =  Label(Stats,font=("Courier", 13), width=8, height=1, bg="black", fg="white",
-#               text= " mana  " )
-# stat.pack(side=LEFT, anchor=NW)
-# stat =  Label(Stats,font=("Courier", 13), width=8, height=2, bg="black", fg="white",
-#               text= 0)
-# stat.pack()
-#
-#
-# stat =  Label(Stats,font=("Courier", 13), width=10, height=2, bg="black", fg="white",
-#               text= " Ekwipunek:\n" )
-# stat.pack(side=LEFT, anchor=NW)
-
-
-
-
-
-
 
 
 # the main text box that is changing
 introduction = Label(root,font=("Courier", 15), width=80, height=10, bg="black", fg="white",
-                     text="Witaj, to krótka historia małego goblina. Chcesz zagrać?\n"
-                           "Kolor przycisków ma znaczenie. Niebieski to przejście do innej lokacji\n"
-                          "zielony to działanie, czerwony oznacza opcje która wydaje \n"
-                          "się głupia goblinowi, a to coś już znaczy. ")
+                     text="Hello, this is a short story of a little goblin.\n"
+                          " Want to play? The color of the buttons matters. \n"
+                          "Blue is a transition to another location, green is\n"
+                          " action, red means an option that seems stupid \n"
+                          "to a goblin, and that means something. ")
 introduction.pack()
 
 
 # exit and the buttons
 button2 = Button(bottomFrame, width=35, height=1,
-                    text="Nie che mi się", fg="red", command = root.destroy)
+                    text="I do not want to", fg="red", command = root.destroy)
 button2.pack(side=BOTTOM)
 
 button0 = Button(bottomFrame, width=35, height=1,
-                 text="Zobacz co marek przygotował", fg="green",
+                 text="See what Marek have prepared", fg="green",
                  command= change_text, )
 button0.pack(side=BOTTOM)
 
 
 button1 = Button(bottomFrame, width=35, height=1,
-                 text="Jasne że zagram", fg="blue",
+                 text="Of course I will play", fg="blue",
                  command= change_text, )
 button1.pack(side=BOTTOM, )
 
