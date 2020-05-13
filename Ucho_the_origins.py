@@ -11,7 +11,7 @@ pikachu_image = PhotoImage(file= "thumb-89303.gif")
 nice_picture = PhotoImage(file= "cyrodiil-pixel-art.png")
 first_room_picture = PhotoImage(file= "ucho_first_room_pixelart.png")
 hurt_goblin_picture = PhotoImage(file="hurt_gobba.png")
-
+trebuchet_picture = PhotoImage(file ="trebuchet.png")
 
 # The main framework (all the windows)
 Stats = Label(root, width=15, height=50, bg="red")
