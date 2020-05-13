@@ -50,17 +50,32 @@ stat.pack()
 
 # this function will save the progress bu creating a a simple txt file and later reading it.
 def save_csv():
-    f = open("ucho_the_origins_save.txt", "w+")
-    f.write("The player has made some progress")
-    os.mkdir('pizza_pictures')
-    f.close()
+    try:
+        f = open("ucho_the_origins_save.txt", "w+")
+        f.write("The player has made some progress")
+        # this line is a test and is unnecessary. It will make a directory.
+        os.mkdir('pizza_pictures')
+        f.close()
+    except FileExistsError:
+        f = open("ucho_the_origins_save.txt", "r+")
+        f.write("The player has made some progress")
+        f.close()
+    #  this is the save confirmation for the player
+    save_window = Tk()
+    # The line below will make the window appear in the middle and on top of the main game window
+    save_window.eval('tk::PlaceWindow %s center' % save_window.winfo_toplevel())
+    # This line below makes the first window hide
+    save_window.withdraw()
+    messagebox.showinfo('Question', 'Game is saved.')
+    # save_window.deiconify()
+    # save_window.destroy()
+    # save_window.quit()
 
-# save_csv()
-
+    
+    
+    
 # the functions were written before i had learned about code naming rules and code ethics so it isn`t pretty and
 # it is messy. Im working to clean  it
-
-
 
 def first_orc():
     introduction["text"] =  "You leave the room. Your eyes are quickly getting used to the dark. \n "\
