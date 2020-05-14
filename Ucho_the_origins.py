@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import os
 
 
@@ -12,6 +13,9 @@ nice_picture = PhotoImage(file= "cyrodiil-pixel-art.png")
 first_room_picture = PhotoImage(file= "ucho_first_room_pixelart.png")
 hurt_goblin_picture = PhotoImage(file="hurt_gobba.png")
 trebuchet_picture = PhotoImage(file ="trebuchet.png")
+goblin_cave_picture = PhotoImage(file="cave.png")
+
+
 
 # The main framework (all the windows)
 Stats = Label(root, width=15, height=50, bg="red")
@@ -62,20 +66,25 @@ def save_csv():
         f.close()
     #  this is the save confirmation for the player
     save_window = Tk()
+
     # The line below will make the window appear in the middle and on top of the main game window
     save_window.eval('tk::PlaceWindow %s center' % save_window.winfo_toplevel())
+
     # This line below makes the first window hide
     save_window.withdraw()
+
     messagebox.showinfo('Question', 'Game is saved.')
     # save_window.deiconify()
     # save_window.destroy()
     # save_window.quit()
 
-    
-    
-    
+
+# save_csv()
+
 # the functions were written before i had learned about code naming rules and code ethics so it isn`t pretty and
 # it is messy. Im working to clean  it
+
+
 
 def first_orc():
     introduction["text"] =  "You leave the room. Your eyes are quickly getting used to the dark. \n "\
@@ -88,7 +97,7 @@ def first_orc():
         introduction["text"] =  "- Stupid git, this name is already taken !! - \n "\
                                 "The orc frowns and you get a blow to the face before you can react. \n "\
                                 " You fall backwards with a black eye  When you get up from the floor,  \n "\
-                                "the orc loses interest and goes your way ... \n "\
+                                "the orc loses interest and goes his way ... \n "\
                                 "You are alone in the middle of the \n" \
                                 "corridor"
 
@@ -151,7 +160,7 @@ def machinery_1():
                                " smoke and blaze. Finally you manage to reach the mighty square.\n " \
                                " Sunlight floods your eyes. You are at the very top !! \n " \
                                "Hundreds of greenskins are working on a powerful device. "
-
+        label["image"] = trebuchet_picture
         introduction.pack()
         def machinery_engineer():
             introduction["text"] = " You approach one of the engineers involved in drawing up plans"
@@ -320,8 +329,9 @@ def going_downstairs():
                            " from below. You enter one of the rooms. You can see a lot\n" \
                            " of mushrooms, some animals and shamans with funny hats. "
     button0['text'] = 'approach the shaman'
+    label["image"] = goblin_cave_picture
     def first_shaman():
-        introduction["text"] = "- Hey little gobba! : D What are you doing here?"
+        introduction["text"] = "- Hey little gobba! :D What are you doing here?"
 
         def first_shaman_text():
             introduction["text"] = "In general, we prepare everything that is needed. \n" \
